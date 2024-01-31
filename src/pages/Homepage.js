@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import chef from "../assets/images/Chef-cuate.svg";
 import "../App.css";
 import { UserContext } from "../context/UserContext";
-
+import CardSkeleton from "../components/CardSkeleton";
 const Recipes = () => {
   const user = useContext(UserContext);
 
@@ -40,7 +40,23 @@ const Recipes = () => {
           SEARCH
         </button>
       </form>
-      {/* // search bar
+
+      <div className="flex justify-center">
+        <select class="select select-bordered w-full max-w-xs">
+          <option disabled selected>
+            Select a category
+          </option>
+          <option>Han Solo</option>
+          <option>Greedo</option>
+        </select>
+      </div>
+
+      <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-10">
+        <CardSkeleton count={16} />
+      </div>
+
+      
+      {/* 
       //category filter
       //recipe cards */}
     </>
