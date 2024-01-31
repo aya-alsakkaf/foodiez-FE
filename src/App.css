@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@300&display=swap"); /* import the luckiest guy font */
+
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@300&family=Rowdies:wght@300;400&display=swap"); /* import the rowdies font */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Luckiest+Guy&family=Nunito:wght@300&family=Rowdies:wght@300;400&display=swap"); /* import the inter font */
+
+.navbar {
+  font-family: "Luckiest Guy", cursive;
+}
+
+.mainFont {
+  font-family: "Luckiest Guy", cursive;
+}
+
+.subFont {
+  font-family: "Rowdies", cursive;
+}
+
+.subFontLight {
+  font-family: "Rowdies", cursive;
+  font-weight: 300;
+}
