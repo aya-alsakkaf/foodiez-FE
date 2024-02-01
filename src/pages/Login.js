@@ -5,7 +5,7 @@ import "../App.css";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import Skeleton from "../components/Skeleton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ROUTER from "../navigation";
 import { UserContext } from "../context/UserContext";
 
@@ -97,10 +97,13 @@ export const Login = () => {
 
               <p className="mt-3 subFontLight">
                 Don't Have An Account?{" "}
-                <a href="#" className="text-orange-500 font-bold">
+                <Link
+                  to={ROUTER.REGISTER}
+                  className="text-orange-500 font-bold"
+                >
                   {" "}
                   REGISTER
-                </a>
+                </Link>
               </p>
             </form>
           </div>

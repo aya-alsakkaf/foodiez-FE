@@ -5,7 +5,7 @@ import "../App.css";
 import { useMutation } from "@tanstack/react-query";
 import { register } from "../api/auth";
 import Skeleton from "../components/Skeleton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ROUTER from "../navigation";
 
 export const Register = () => {
@@ -89,10 +89,10 @@ export const Register = () => {
 
               <p className="mt-3 subFontLight">
                 Already have an account?{" "}
-                <a href="#" className="text-orange-500 font-bold">
+                <Link to={ROUTER.LOGIN} className="text-orange-500 font-bold">
                   {" "}
                   LOG IN
-                </a>
+                </Link>
               </p>
             </form>
           </div>
