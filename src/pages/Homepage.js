@@ -1,32 +1,30 @@
-import React, { useContext, useState } from "react";
-import chef from "../assets/images/Chef-cuate.svg";
+import React from "react";
 import "../App.css";
-import { UserContext } from "../context/UserContext";
 import CardSkeleton from "../components/CardSkeleton";
+import Hero from "../components/Hero";
+import { useQuery } from "@tanstack/react-query";
+import { getAllRecipes } from "../api/recipes";
+import { getAllCategories } from "../api/categories";
+
 const Recipes = () => {
-  const user = useContext(UserContext);
+  const { data: recipes, isLoading } = useQuery({
+    queryKey: ["recipes"],
+    queryFn: getAllRecipes,
+  });
 
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getAllCategories,
+  });
+
+  // Think whether you will filter in FE or send a backend request to get filtered data.
+  // If you filter in FE, you will have to use the categories data from the query above.
+  // If you filter in BE, you will have to send a request to the backend with the category id as a query param.
+
+  const displayRecipes = recipes?.map((recipe) => <h1>R</h1>);
   return (
-    // create a hero section
     <>
-      <div className="hero ">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src={chef} className="max-w-lg rounded-lg" />
-          <div>
-            <h1 className="text-5xl mainFont">Unleash your inner chef!</h1>
-            <p className="py-6 subFont lg:w-max">
-              Embrace the joy of cooking with Foodiez - Where every ingredient
-              tells a story
-            </p>
-            {user ? null : (
-              <button className="btn bg-red-700 text-white mainFont hover:text-black">
-                LOGIN
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
+      <Hero />
       <form className="p-4 flex justify-center items-center">
         <input
           type="text"
@@ -46,16 +44,20 @@ const Recipes = () => {
           <option disabled selected>
             Select a category
           </option>
-          <option>Han Solo</option>
-          <option>Greedo</option>
+          {categories?.map((category) => (
+            <option value={category.id}>{category.categoryName}</option>
+          ))}
         </select>
       </div>
 
-      <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-10">
-        <CardSkeleton count={16} />
-      </div>
+      {isLoading ? (
+        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-10">
+          <CardSkeleton count={16} />
+        </div>
+      ) : (
+        displayRecipes
+      )}
 
-      
       {/* 
       //category filter
       //recipe cards */}
