@@ -7,6 +7,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import Main from "./pages/Main";
 import Homepage from "./pages/Homepage";
+import AddRecipe from "./pages/AddRecipe";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -36,11 +37,15 @@ const App = () => {
           path: "/",
           element: <Homepage />,
         },
+        {
+          path: ROUTER.ADD_RECIPE,
+          element: <AddRecipe />,
+        },
       ],
     },
   ]);
   return (
-    <UserContext.Provider value={{user, setUser}}>
+    <UserContext.Provider value={{ user, setUser }}>
       <RouterProvider router={router} />
     </UserContext.Provider>
   );

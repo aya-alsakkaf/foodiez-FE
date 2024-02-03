@@ -21,7 +21,7 @@ const Recipes = () => {
   // If you filter in FE, you will have to use the categories data from the query above.
   // If you filter in BE, you will have to send a request to the backend with the category id as a query param.
 
-  const displayRecipes = recipes?.map((recipe) => <h1>R</h1>);
+  const displayRecipes = recipes?.map((recipe) => <h1></h1>);
   return (
     <>
       <Hero />

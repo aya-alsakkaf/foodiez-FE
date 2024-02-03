@@ -32,36 +32,39 @@ export const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Home</a>
+              <Link to={ROUTER.HOME}>Home</Link>
             </li>
 
             <li>
-              <a>Add Recipe</a>
+              <Link to={ROUTER.ADD_RECIPE}>Add Recipe</Link>
             </li>
             <li>
-              <a>My Recipe</a>
+              <Link to={"#"}>My Recipe</Link>
             </li>
           </ul>
         </div>
-        <a className="btn bg-transparent hover:bg-transparent border-none  shadow-none text-xl">
+        <Link
+          to={ROUTER.HOME}
+          className="btn bg-transparent hover:bg-transparent border-none  shadow-none text-xl"
+        >
           <img
             src={logo}
             alt="logo"
             className="max-w-[220px] hidden md:block "
           />
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            <Link to={ROUTER.HOME}>Home</Link>
           </li>
 
           <li>
-            <a>Add Recipe</a>
+            <Link to={ROUTER.ADD_RECIPE}>Add Recipe</Link>
           </li>
           <li>
-            <a>My Recipe</a>
+            <Link to={"#"}>My Recipe</Link>
           </li>
         </ul>
       </div>
