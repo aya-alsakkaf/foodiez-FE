@@ -1,42 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import CardSkeleton from "../components/CardSkeleton";
 import Hero from "../components/Hero";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQ } from "@tanstack/react-query";
 import { getAllRecipes } from "../api/recipes";
 import { getAllCategories, getRecipebyCategory } from "../api/categories";
 import RecipeCard from "../components/RecipeCard";
+import RecipeList from "../components/RecipeList";
 
 const Recipes = () => {
   const [query, setQuery] = useState("");
   const [id, setId] = useState("");
-  const { data: recipes, isLoading } = useQuery({
-    queryKey: ["recipes"],
-    queryFn: getAllRecipes,
-  });
 
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: getAllCategories,
   });
-
-  const { data: recipesByCategory, isLoading: LoadingRecipes } = useQuery({
-    queryKey: ["recipesByCategory"],
-    queryFn: () => (id === "" ? null : getRecipebyCategory(id)),
-  });
-
-  const displayRecipes = recipes
-    ?.filter((recipe) =>
-      recipe.title.toLowerCase().includes(query.toLowerCase())
-    )
-    .map((recipe) => (
-      <RecipeCard
-        id={recipe._id}
-        image={recipe.image}
-        title={recipe.title}
-        category={recipe.category}
-      />
-    ));
 
   return (
     <>
@@ -59,35 +38,24 @@ const Recipes = () => {
       <div className="flex justify-center">
         <select
           class="select select-bordered w-full max-w-xs"
-          onChange={(e) => setId(e.target.value)}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setId(e.target.value);
+          }}
         >
           <option disabled selected>
             Select a category
           </option>
-          <option value="" selected>
+          <option value="all" selected>
             All
           </option>
           {categories?.map((category) => (
-            <option value={category.categoryName}>
-              {category.categoryName}
-            </option>
+            <option value={category._id}>{category.categoryName}</option>
           ))}
         </select>
       </div>
 
-      {isLoading ? (
-        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-10">
-          <CardSkeleton count={16} />
-        </div>
-      ) : (
-        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 m-10">
-          {displayRecipes}
-        </div>
-      )}
-
-      {/* 
-      //category filter
-       */}
+      <RecipeList id={id} query={query} />
     </>
   );
 };

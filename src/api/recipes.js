@@ -1,7 +1,9 @@
 import instance from ".";
 
-const getAllRecipes = async () => {
-  const { data } = await instance.get("/recipes");
+const getAllRecipes = async (id) => {
+  const { data } = await instance.post("/recipes", {
+    category: id == "all" ? "" : id,
+  });
   return data;
 };
 
