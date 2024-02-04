@@ -39,4 +39,9 @@ const getRecipeByID = async (id) => {
   return data;
 };
 
-export { getAllRecipes, addRecipe, getRecipeByID };
+const getUserRecipes = async () => {
+  const { data } = await instance.get("/user/recipes");
+  return data;
+};
+
+export { getAllRecipes, addRecipe, getRecipeByID, getUserRecipes };

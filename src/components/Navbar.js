@@ -39,7 +39,7 @@ export const Navbar = () => {
               <Link to={ROUTER.ADD_RECIPE}>Add Recipe</Link>
             </li>
             <li>
-              <Link to={"#"}>My Recipe</Link>
+              <Link to={ROUTER.MY_RECIPES}>My Recipe</Link>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@ export const Navbar = () => {
             <Link to={ROUTER.ADD_RECIPE}>Add Recipe</Link>
           </li>
           <li>
-            <Link to={"#"}>My Recipe</Link>
+            <Link to={ROUTER.MY_RECIPES}>My Recipe</Link>
           </li>
         </ul>
       </div>

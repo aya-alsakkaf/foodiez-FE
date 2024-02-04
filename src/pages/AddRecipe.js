@@ -3,6 +3,7 @@ import "../App.css";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getAllCategories } from "../api/categories";
 import { addRecipe } from "../api/recipes";
+import Alert from "../components/Alert";
 
 const AddRecipe = () => {
   const [file, setFile] = useState(
@@ -72,19 +73,6 @@ const AddRecipe = () => {
       setRecipe({ ...recipe, steps: newSteps });
     }
   };
-  const { mutate } = useMutation({
-    mutationFn: () => addRecipe(recipe),
-    mutationKey: ["addRecipe"],
-    onSuccess: () => {
-      alert("Recipe added successfully");
-    },
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(recipe);
-    mutate();
-  };
   const handleReset = (e) => {
     e.preventDefault();
     setRecipe({
@@ -97,6 +85,19 @@ const AddRecipe = () => {
       servings: "",
       image: "",
     });
+  };
+  const { mutate, isSuccess, isLoading } = useMutation({
+    mutationFn: () => addRecipe(recipe),
+    mutationKey: ["addRecipe"],
+    onSuccess: () => {
+      handleReset();
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(recipe);
+    mutate();
   };
 
   const { data: categories } = useQuery({
@@ -201,7 +202,12 @@ const AddRecipe = () => {
                 className="file:mr-4 file:mb-2 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-black-700 hover:file:bg-red-100"
                 required
               />
-              <img src={file} width={"260px"} height={"260px"} />
+              <img
+                src={file}
+                alt="recipePicture"
+                width={"260px"}
+                height={"260px"}
+              />
             </div>
           </div>
           <div className="mb-4 ">
@@ -358,6 +364,10 @@ const AddRecipe = () => {
               RESET
             </button>
           </div>
+          {isLoading && <Alert bg="bg-blue-300" text="Adding Recipe..." />}
+          {isSuccess && (
+            <Alert bg="bg-green-300" text="Recipe Added Successfully!" />
+          )}
         </form>
       </div>
     </div>

@@ -3,7 +3,7 @@ const ROUTER = {
   REGISTER: "/register",
   HOME: "/",
   ADD_RECIPE: "/add-recipe",
-  MY_RECIPES: "/my-recipes",
+  MY_RECIPES: "/user/recipes",
   RECIPE_DETAILS: "/recipes/:id",
 };
 
