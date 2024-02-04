@@ -4,7 +4,7 @@ const ROUTER = {
   HOME: "/",
   ADD_RECIPE: "/add-recipe",
   MY_RECIPES: "/my-recipes",
-  RECIPE_DETAILS: "/recipe-details",
+  RECIPE_DETAILS: "/recipes/:id",
 };
 
 export default ROUTER;

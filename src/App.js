@@ -9,6 +9,7 @@ import Main from "./pages/Main";
 import Homepage from "./pages/Homepage";
 import AddRecipe from "./pages/AddRecipe";
 import NotFound from "./pages/404NotFound";
+import RecipeDetails from "./pages/RecipeDetails";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -31,16 +32,20 @@ const App = () => {
     },
 
     {
-      path: "/",
+      path: ROUTER.HOME,
       element: <Main />,
       children: [
         {
-          path: "/",
+          path: ROUTER.HOME,
           element: <Homepage />,
         },
         {
           path: ROUTER.ADD_RECIPE,
           element: <AddRecipe />,
+        },
+        {
+          path: ROUTER.RECIPE_DETAILS,
+          element: <RecipeDetails />,
         },
       ],
     },

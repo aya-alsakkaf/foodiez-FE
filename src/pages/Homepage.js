@@ -5,7 +5,6 @@ import Hero from "../components/Hero";
 import { useQuery } from "@tanstack/react-query";
 import { getAllRecipes } from "../api/recipes";
 import { getAllCategories } from "../api/categories";
-import { Link } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
 
 const Recipes = () => {
@@ -64,14 +63,14 @@ const Recipes = () => {
           <CardSkeleton count={16} />
         </div>
       ) : (
-        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-10">
+        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 m-10">
           {displayRecipes}
         </div>
       )}
 
       {/* 
       //category filter
-      //recipe cards */}
+       */}
     </>
   );
 };
