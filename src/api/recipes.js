@@ -1,8 +1,10 @@
 import instance from ".";
 
-const getAllRecipes = async (id) => {
+const getAllRecipes = async (id, pageNumber, pageLimit) => {
   const { data } = await instance.post("/recipes", {
     category: id == "all" ? "" : id,
+    skip: (pageNumber - 1) * pageLimit,
+    limit: pageLimit,
   });
   return data;
 };
