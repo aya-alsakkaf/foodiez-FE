@@ -21,13 +21,8 @@ const RecipeDetails = () => {
       ) : (
         <div className="p-5 flex flex-col justify-center items-center mt-2">
           <h1 className="mainFont text-xl"> {recipe?.title} </h1>
-          {/* <img src={baseImage + recipe.image} alt={recipe.title} /> */}
           <div className=" md:w-[25%]">
-            <img
-              src="https://montevista.greatheartsamerica.org/wp-content/uploads/sites/2/2016/11/default-placeholder.png"
-              alt={recipe?.title}
-              className="object-fill"
-            />
+            <img src={baseImage + recipe.image} alt={recipe.title} />
           </div>
 
           <div className=" grid grid-cols-3 gap-5 mt-3 md:gap-46  border-2 md:w-[50%] p-3">
