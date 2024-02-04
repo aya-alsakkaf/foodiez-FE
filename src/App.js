@@ -8,6 +8,7 @@ import { Register } from "./pages/Register";
 import Main from "./pages/Main";
 import Homepage from "./pages/Homepage";
 import AddRecipe from "./pages/AddRecipe";
+import NotFound from "./pages/404NotFound";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -42,6 +43,10 @@ const App = () => {
           element: <AddRecipe />,
         },
       ],
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ]);
   return (
