@@ -13,7 +13,7 @@ const RecipeCard = ({ id, image, title, category }) => {
           <div className=" badge bg-[#FE6E63] p-2 text-white badge-md">{category.categoryName}</div>
         ))}
         <div className=" h-4 w-full">
-          <h1 className="subFontLight">{title}</h1>
+          <h1 className="subFontLight text-xl">{title}</h1>
         </div>
       </div>
     </Link>

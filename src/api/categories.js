@@ -14,4 +14,10 @@ const addCategory = async (category) => {
   }
 };
 
-export { getAllCategories };
+const getRecipebyCategory = async (id) => {
+  const { data } = await instance.get(`/getRecipesByCategory/${id}`);
+  console.log(data);
+  return data;
+};
+
+export { getAllCategories, getRecipebyCategory };
