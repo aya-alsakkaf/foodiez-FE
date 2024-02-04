@@ -364,10 +364,12 @@ const AddRecipe = () => {
               RESET
             </button>
           </div>
-          {isLoading && <Alert bg="bg-blue-300" text="Adding Recipe..." />}
-          {isSuccess && (
+          {isLoading ? (
+            <Alert bg="bg-yellow-300" text="Adding Recipe..." />
+          ) : null}
+          {isSuccess ? (
             <Alert bg="bg-green-300" text="Recipe Added Successfully!" />
-          )}
+          ) : null}
         </form>
       </div>
     </div>

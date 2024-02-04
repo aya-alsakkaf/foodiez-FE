@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 import CardSkeleton from "../components/CardSkeleton";
 import Hero from "../components/Hero";
@@ -8,6 +8,7 @@ import { getAllCategories } from "../api/categories";
 import RecipeCard from "../components/RecipeCard";
 
 const Recipes = () => {
+  const [query, setQuery] = useState("");
   const { data: recipes, isLoading } = useQuery({
     queryKey: ["recipes"],
     queryFn: getAllRecipes,
@@ -18,18 +19,18 @@ const Recipes = () => {
     queryFn: getAllCategories,
   });
 
-  // Think whether you will filter in FE or send a backend request to get filtered data.
-  // If you filter in FE, you will have to use the categories data from the query above.
-  // If you filter in BE, you will have to send a request to the backend with the category id as a query param.
-
-  const displayRecipes = recipes?.map((recipe) => (
-    <RecipeCard
-      id={recipe._id}
-      image={recipe.image}
-      title={recipe.title}
-      category={recipe.category}
-    />
-  ));
+  const displayRecipes = recipes
+    ?.filter((recipe) =>
+      recipe.title.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((recipe) => (
+      <RecipeCard
+        id={recipe._id}
+        image={recipe.image}
+        title={recipe.title}
+        category={recipe.category}
+      />
+    ));
   return (
     <>
       <Hero />
@@ -40,6 +41,7 @@ const Recipes = () => {
           name="search"
           className="bg-gray-50 border my-2 mx-3 border-gray-300 text-gray-900 rounded-lg focus:ring-red-500 focus:border-red-500 block w-[50%] p-2.5 "
           placeholder="Search for recipes"
+          onChange={(e) => setQuery(e.target.value)}
           required
         />
         <button className="btn bg-red-700 text-white hover:text-black mainFont">
@@ -63,7 +65,7 @@ const Recipes = () => {
           <CardSkeleton count={16} />
         </div>
       ) : (
-        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 m-10">
+        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 m-10">
           {displayRecipes}
         </div>
       )}
