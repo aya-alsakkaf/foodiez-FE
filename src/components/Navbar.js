@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 import { deleteToken } from "../api/storage/token";
 
 export const Navbar = () => {
-  const { setUser, user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -72,8 +72,8 @@ export const Navbar = () => {
         {user ? (
           <button
             onClick={() => {
-              deleteToken();
               setUser(false);
+              deleteToken();
             }}
             className="btn bg-red-700 text-white hover:text-black"
           >

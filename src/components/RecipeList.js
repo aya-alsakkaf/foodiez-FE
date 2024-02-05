@@ -41,8 +41,8 @@ const RecipeList = ({ id, query }) => {
     pageNumbers.push(
       <>
         <div
-          className={`w-[20px] h-[20px] ${
-            pageNumber == i ? "bg-green-500" : "bg-red-500"
+          className={`w-[25px] h-[25px] rounded ${
+            pageNumber == i ? "bg-red-700 text-white" : "bg-gray-400 text-white"
           } text-center`}
           onClick={() => {
             setPageNumber(i);
