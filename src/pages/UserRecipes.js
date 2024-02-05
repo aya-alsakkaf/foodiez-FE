@@ -3,6 +3,8 @@ import React from "react";
 import { getUserRecipes } from "../api/recipes";
 import RecipeCard from "../components/RecipeCard";
 import Alert from "../components/Alert";
+import { Link } from "react-router-dom";
+import ROUTER from "../navigation";
 
 const UserRecipes = () => {
   const { data: userRecipes, isError } = useQuery({
@@ -31,7 +33,19 @@ const UserRecipes = () => {
         </div>
       )}
       <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 m-10">
-        {displayRecipes}
+        {displayRecipes?.length === 0 ? (
+          <>
+            <h1 className="text-red-700 text-center text-lg  col-span-4">
+              There are no recipes to display. You can add a recipe{" "}
+              <Link to={ROUTER.ADD_RECIPE} className="font-bold">
+                {" "}
+                here{" "}
+              </Link>
+            </h1>
+          </>
+        ) : (
+          displayRecipes
+        )}
       </div>
     </>
   );
