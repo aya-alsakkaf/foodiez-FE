@@ -109,9 +109,9 @@ const AddRecipe = () => {
   });
 
   return (
-    <div className="container mx-auto p-5">
-      <div className="font-bold">
-        <h1 className="text-3xl  text-center  mainFont">Add Recipe</h1>
+    <>
+      <div className="">
+        <h1 className="text-3xl  text-center mt-10 mainFont">Add a Recipes</h1>
       </div>
 
       {user ? (
@@ -387,7 +387,7 @@ const AddRecipe = () => {
           />
         </div>
       )}
-    </div>
+    </>
   );
 };
 
