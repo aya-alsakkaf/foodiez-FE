@@ -5,6 +5,7 @@ import { getAllCategories } from "../api/categories";
 import { addRecipe } from "../api/recipes";
 import Alert from "../components/Alert";
 import { UserContext } from "../context/UserContext";
+import Swal from "sweetalert2";
 
 const AddRecipe = () => {
   const [file, setFile] = useState(
@@ -75,8 +76,7 @@ const AddRecipe = () => {
     }
   };
 
-  const handleReset = (e) => {
-    e.preventDefault();
+  const handleReset = () => {
     setRecipe({
       title: "",
       ingredients: [""],
@@ -85,7 +85,8 @@ const AddRecipe = () => {
       category: "",
       prepTime: { value: "", type: "minutes" },
       servings: "",
-      image: "",
+      image:
+        "https://montevista.greatheartsamerica.org/wp-content/uploads/sites/2/2016/11/default-placeholder.png",
     });
   };
 
@@ -93,13 +94,24 @@ const AddRecipe = () => {
     mutationFn: () => addRecipe(recipe),
     mutationKey: ["addRecipe"],
     onSuccess: () => {
-      handleReset();
+      Swal.fire({ title: "Recipe Added!", confirmButtonColor: "#FE6E63" });
+      setRecipe({
+        title: "",
+        ingredients: [""],
+        cookTime: { value: "", type: "minutes" },
+        steps: [""],
+        category: "",
+        prepTime: { value: "", type: "minutes" },
+        servings: "",
+      });
+      setFile(
+        "https://montevista.greatheartsamerica.org/wp-content/uploads/sites/2/2016/11/default-placeholder.png"
+      );
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(recipe);
     mutate();
   };
 
@@ -113,7 +125,6 @@ const AddRecipe = () => {
       <div className="">
         <h1 className="text-3xl  text-center mt-10 mainFont">Add a Recipes</h1>
       </div>
-
       {user ? (
         <div className="m-3 flex justify-center">
           <form onSubmit={handleSubmit} className="w-full md:w-[50%]">
@@ -363,26 +374,16 @@ const AddRecipe = () => {
               <button type="submit" className="btn bg-red-700 text-white">
                 Add Recipe
               </button>
-              <button
-                type="reset"
-                className="btn text-black"
-                onClick={handleReset}
-              >
+              <button type="reset" className="btn text-black">
                 RESET
               </button>
             </div>
           </form>
-          {isLoading ? (
-            <Alert bg="bg-yellow-300" text="Adding Recipe..." />
-          ) : null}
-          {isSuccess ? (
-            <Alert bg="bg-green-300" text="Recipe Added Successfully!" />
-          ) : null}
         </div>
       ) : (
         <div className="flex justify-center">
           <Alert
-            text="You need an account to view your recipes"
+            text="You need an account to add recipes"
             bg="bg-red-700 text-white text-center w-[50%]"
           />
         </div>
